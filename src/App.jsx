@@ -6,7 +6,7 @@ import AuthModal from './components/AuthModal';
 import { useAuth } from './hooks/useAuth';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL || 'https://study-assistant-backend.onrender.com';
 function App() {
   const [studyData, setStudyData] = useState(null);
   const [loading, setLoading] = useState(false);
