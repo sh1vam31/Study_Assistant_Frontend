@@ -12,14 +12,14 @@ function SearchForm({ onSearch, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="glass-card-strong rounded-3xl p-8 transition-all duration-300 backdrop-blur-xl border border-white/20">
+    <form onSubmit={handleSubmit} className="bg-white/90 dark:bg-white/10 rounded-3xl p-8 transition-all duration-300 backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-xl">
       <div className="mb-4">
         <input
           type="text"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
           placeholder="What do you want to learn?"
-          className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder-blue-200/60 transition-all duration-200 text-base backdrop-blur-sm"
+          className="w-full px-6 py-4 bg-white dark:bg-white/10 border-2 border-gray-300 dark:border-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-blue-200/60 transition-all duration-200 text-base"
           disabled={loading}
         />
       </div>
@@ -31,8 +31,8 @@ function SearchForm({ onSearch, loading }) {
           disabled={loading}
           className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${
             mode === 'normal'
-              ? 'bg-blue-500/80 text-white'
-              : 'bg-white/10 text-blue-200 hover:bg-white/20'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-blue-200 hover:bg-gray-300 dark:hover:bg-white/20'
           }`}
         >
           📚 Normal
@@ -44,8 +44,8 @@ function SearchForm({ onSearch, loading }) {
           disabled={loading}
           className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${
             mode === 'math'
-              ? 'bg-blue-500/80 text-white'
-              : 'bg-white/10 text-blue-200 hover:bg-white/20'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-blue-200 hover:bg-gray-300 dark:hover:bg-white/20'
           }`}
         >
           🧮 Math Mode
@@ -56,7 +56,7 @@ function SearchForm({ onSearch, loading }) {
       <button
         type="submit"
         disabled={loading || !topic.trim()}
-        className="w-full bg-blue-500/80 hover:bg-blue-500 disabled:bg-gray-500/50 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg"
       >
         {loading ? (
           <>
