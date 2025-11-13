@@ -197,34 +197,6 @@ Smart Study Assistant transforms any topic into structured learning materials us
 
 ---
 
-## Deployment
-
-### Backend Deployment (Render/Railway/Heroku)
-
-1. Push code to GitHub repository
-2. Create new web service on hosting platform
-3. Connect GitHub repository
-4. Set root directory to `backend`
-5. Configure environment variables:
-   - `GEMINI_API_KEY`
-   - `MONGODB_URI`
-   - `JWT_SECRET`
-   - `NODE_ENV=production`
-6. Deploy
-
-### Frontend Deployment (Vercel/Netlify)
-
-1. Push code to GitHub repository
-2. Create new project on hosting platform
-3. Connect GitHub repository
-4. Set root directory to `frontend`
-5. Configure build settings:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-6. Set environment variable:
-   - `VITE_API_URL=<your-backend-url>`
-7. Deploy
-
 **Current Deployment:**
 - Frontend: [https://study-assistant-frontend.vercel.app/](https://study-assistant-frontend.vercel.app/)
 - Backend: [https://study-assistant-backend.onrender.com](https://study-assistant-backend.onrender.com)
