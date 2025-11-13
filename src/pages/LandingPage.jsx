@@ -43,21 +43,21 @@ function LandingPage({ onGetStarted, darkMode, setDarkMode }) {
 
         {/* Features */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl w-full animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          <div className="bg-white/80 dark:bg-white/10 rounded-2xl p-6 text-center backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-lg">
-            <div className="text-4xl mb-3">📚</div>
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">Smart Summaries</h3>
+          <div className="group bg-white/80 dark:bg-white/10 rounded-2xl p-6 text-center backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">📚</div>
+            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Smart Summaries</h3>
             <p className="text-sm text-gray-600 dark:text-blue-200/80">Get concise, AI-generated summaries of any topic</p>
           </div>
           
-          <div className="bg-white/80 dark:bg-white/10 rounded-2xl p-6 text-center backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-lg">
-            <div className="text-4xl mb-3">❓</div>
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">Interactive Quizzes</h3>
+          <div className="group bg-white/80 dark:bg-white/10 rounded-2xl p-6 text-center backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">❓</div>
+            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Interactive Quizzes</h3>
             <p className="text-sm text-gray-600 dark:text-blue-200/80">Test your knowledge with custom quiz questions</p>
           </div>
           
-          <div className="bg-white/80 dark:bg-white/10 rounded-2xl p-6 text-center backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-lg">
-            <div className="text-4xl mb-3">🧮</div>
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">Math Solver</h3>
+          <div className="group bg-white/80 dark:bg-white/10 rounded-2xl p-6 text-center backdrop-blur-xl border border-gray-200 dark:border-white/20 shadow-lg hover:shadow-2xl hover:scale-105 hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🧮</div>
+            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-300">Math Solver</h3>
             <p className="text-sm text-gray-600 dark:text-blue-200/80">Solve math problems with step-by-step solutions</p>
           </div>
         </div>
