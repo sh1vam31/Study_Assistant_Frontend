@@ -7,6 +7,7 @@ function AuthModal({ onClose, onLogin, onSignup }) {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,24 +53,25 @@ function AuthModal({ onClose, onLogin, onSignup }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center animate-fade-in">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-2xl p-8 max-w-md w-full mx-4 animate-slide-up">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-            {isLogin ? '🔐 Login' : '📝 Sign Up'}
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center animate-fade-in p-4">
+      <div className="glass-card-strong rounded-2xl shadow-2xl p-8 max-w-md w-full animate-slide-up border border-white/20 backdrop-blur-xl">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-500/30 rounded-xl mb-3">
+            <span className="text-2xl">{isLogin ? '🔐' : '📝'}</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white">
+            {isLogin ? 'Welcome Back' : 'Create Account'}
           </h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-2xl transition-transform hover:scale-110"
-          >
-            ×
-          </button>
+          <p className="text-blue-200 mt-2 text-sm">
+            {isLogin ? 'Login to continue your learning journey' : 'Join us to start learning smarter'}
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
             <div>
-              <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
+              <label className="block text-blue-200 text-xs font-medium mb-2">
                 Name
               </label>
               <input
@@ -78,13 +80,13 @@ function AuthModal({ onClose, onLogin, onSignup }) {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Your Name"
                 disabled={loading}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition-all duration-300"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder-blue-200/60 transition-all duration-300 backdrop-blur-sm"
               />
             </div>
           )}
 
           <div>
-            <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
+            <label className="block text-blue-200 text-xs font-medium mb-2">
               Email
             </label>
             <input
@@ -93,26 +95,36 @@ function AuthModal({ onClose, onLogin, onSignup }) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               disabled={loading}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition-all duration-300"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder-blue-200/60 transition-all duration-300 backdrop-blur-sm"
             />
           </div>
 
           <div>
-            <label className="block text-gray-700 dark:text-gray-200 text-sm font-bold mb-2">
+            <label className="block text-blue-200 text-xs font-medium mb-2">
               Password
             </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              disabled={loading}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white transition-all duration-300"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                disabled={loading}
+                className="w-full px-4 py-3 pr-12 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder-blue-200/60 transition-all duration-300 backdrop-blur-sm"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-200 hover:text-white transition-colors"
+                tabIndex={-1}
+              >
+                {showPassword ? '👁️' : '👁️‍🗨️'}
+              </button>
+            </div>
           </div>
 
           {error && (
-            <div className="bg-red-100 dark:bg-red-900 border border-red-400 text-red-700 dark:text-red-200 px-3 py-2 rounded-lg text-sm animate-shake">
+            <div className="bg-red-500/20 border border-red-400/50 text-red-200 px-3 py-2 rounded-lg text-sm animate-shake">
               {error}
             </div>
           )}
@@ -120,24 +132,44 @@ function AuthModal({ onClose, onLogin, onSignup }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
+            className="w-full bg-blue-500/80 hover:bg-blue-500 disabled:bg-gray-500/50 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300"
           >
-            {loading ? 'Please wait...' : (isLogin ? 'Login' : 'Sign Up')}
+            {loading ? (
+              <span className="flex items-center justify-center gap-2">
+                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Please wait...
+              </span>
+            ) : (
+              isLogin ? 'Login' : 'Sign Up'
+            )}
           </button>
         </form>
 
-        <div className="mt-4 text-center">
+        <div className="mt-6 text-center">
           <button
             onClick={() => {
               setIsLogin(!isLogin);
               setError('');
             }}
             disabled={loading}
-            className="text-indigo-600 dark:text-indigo-400 hover:underline text-sm transition-colors disabled:opacity-50"
+            className="text-blue-300 hover:text-white hover:underline text-sm font-medium transition-colors disabled:opacity-50"
           >
             {isLogin ? "Don't have an account? Sign up" : 'Already have an account? Login'}
           </button>
         </div>
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-blue-200 hover:text-white transition-colors"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </div>
   );

@@ -2,14 +2,12 @@ function DarkModeToggle({ darkMode, setDarkMode }) {
   return (
     <button
       onClick={() => setDarkMode(!darkMode)}
-      className="p-2 rounded-lg bg-white dark:bg-gray-800 shadow hover:shadow-md transition-all duration-200"
+      className="p-2.5 rounded-lg glass-card hover:bg-white/20 transition-all duration-300"
       aria-label="Toggle dark mode"
     >
-      {darkMode ? (
-        <span className="text-xl">☀️</span>
-      ) : (
-        <span className="text-xl">🌙</span>
-      )}
+      <span className="text-xl">
+        {darkMode ? '☀️' : '🌙'}
+      </span>
     </button>
   );
 }

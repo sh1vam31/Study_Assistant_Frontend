@@ -12,74 +12,65 @@ function SearchForm({ onSearch, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 transition-all duration-200 hover:shadow-xl border border-gray-200 dark:border-gray-700">
+    <form onSubmit={handleSubmit} className="glass-card-strong rounded-3xl p-8 transition-all duration-300 backdrop-blur-xl border border-white/20">
       <div className="mb-4">
-        <label className="block text-gray-700 dark:text-gray-200 text-sm font-semibold mb-2">
-          What do you want to learn?
-        </label>
         <input
           type="text"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
-          placeholder="e.g., Photosynthesis, World War II, Python Programming"
-          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all duration-200"
+          placeholder="What do you want to learn?"
+          className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-white placeholder-blue-200/60 transition-all duration-200 text-base backdrop-blur-sm"
           disabled={loading}
         />
       </div>
 
-      <div className="mb-4">
-        <label className="block text-gray-700 dark:text-gray-200 text-sm font-semibold mb-2">
-          Study Mode
-        </label>
-        <div className="grid grid-cols-2 gap-3">
-          <label className={`flex items-center justify-center p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+      <div className="flex flex-wrap gap-2 mb-6">
+        <button
+          type="button"
+          onClick={() => setMode('normal')}
+          disabled={loading}
+          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${
             mode === 'normal'
-              ? 'bg-indigo-600 text-white shadow-md'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-          }`}>
-            <input
-              type="radio"
-              value="normal"
-              checked={mode === 'normal'}
-              onChange={(e) => setMode(e.target.value)}
-              className="sr-only"
-              disabled={loading}
-            />
-            <span className="font-medium">📚 Normal</span>
-          </label>
-          <label className={`flex items-center justify-center p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+              ? 'bg-blue-500/80 text-white'
+              : 'bg-white/10 text-blue-200 hover:bg-white/20'
+          }`}
+        >
+          📚 Normal
+          {mode === 'normal' && <span className="ml-1">✕</span>}
+        </button>
+        <button
+          type="button"
+          onClick={() => setMode('math')}
+          disabled={loading}
+          className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${
             mode === 'math'
-              ? 'bg-indigo-600 text-white shadow-md'
-              : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-          }`}>
-            <input
-              type="radio"
-              value="math"
-              checked={mode === 'math'}
-              onChange={(e) => setMode(e.target.value)}
-              className="sr-only"
-              disabled={loading}
-            />
-            <span className="font-medium">🧮 Math Mode</span>
-          </label>
-        </div>
+              ? 'bg-blue-500/80 text-white'
+              : 'bg-white/10 text-blue-200 hover:bg-white/20'
+          }`}
+        >
+          🧮 Math Mode
+          {mode === 'math' && <span className="ml-1">✕</span>}
+        </button>
       </div>
 
       <button
         type="submit"
         disabled={loading || !topic.trim()}
-        className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200 hover:shadow-lg disabled:hover:shadow-none"
+        className="w-full bg-blue-500/80 hover:bg-blue-500 disabled:bg-gray-500/50 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {loading ? (
-          <span className="flex items-center justify-center gap-2">
+          <>
             <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            Generating...
-          </span>
+            <span>Generating...</span>
+          </>
         ) : (
-          'Generate Study Material'
+          <>
+            <span>✨</span>
+            <span>Generate Study Material</span>
+          </>
         )}
       </button>
     </form>
