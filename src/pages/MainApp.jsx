@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import SearchForm from '../components/SearchForm';
 import StudyContent from '../components/StudyContent';
-import DarkModeToggle from '../components/DarkModeToggle';
 import AuthModal from '../components/AuthModal';
+import ProfileDropdown from '../components/ProfileDropdown';
 import { useAuth } from '../hooks/useAuth';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
@@ -224,23 +224,13 @@ function MainApp({ onBackToHome, darkMode, setDarkMode }) {
                 </div>
                 
                 <div className="flex gap-3 items-center">
-                  <DarkModeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
-                  
                   {isAuthenticated ? (
-                    <div className="flex items-center gap-2 bg-white/80 dark:bg-white/10 backdrop-blur-sm border border-gray-200 dark:border-white/20 rounded-lg px-3 py-2">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                        {user.name?.charAt(0).toUpperCase()}
-                      </div>
-                      <span className="text-sm font-medium text-gray-800 dark:text-white hidden md:block">
-                        {user.name}
-                      </span>
-                      <button
-                        onClick={logout}
-                        className="ml-2 px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-md transition-all duration-300"
-                      >
-                        Logout
-                      </button>
-                    </div>
+                    <ProfileDropdown 
+                      user={user}
+                      darkMode={darkMode}
+                      setDarkMode={setDarkMode}
+                      onLogout={logout}
+                    />
                   ) : (
                     <button
                       onClick={() => setShowAuthModal(true)}
